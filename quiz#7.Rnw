@@ -1,0 +1,22 @@
+\documentclass{article}
+
+\begin{document}
+
+
+
+<<chunk1, echo=FALSE>>=
+
+library("rvest")
+
+pop <- html("http://en.wikipedia.org/wiki/Ebola_virus_epidemic_in_West_Africa")
+df <- html_table(html_nodes(pop, "table")[[2]])
+
+tot_cases<-df[10,2]
+tot_deaths<-df[10,3]
+cases_for_US<-df[6,2]
+deathcases_for_US<-df[6,3]
+@
+
+The World Health Organization (WHO) and respective governments have reported a total of \Sexpr{tot_cases} suspected cases and \Sexpr{tot_deaths} deaths, though the WHO believes that this substantially understates the magnitude of the outbreak. In the United States there has been \Sexpr{cases_for_US} reported cases and \Sexpr{deathcases_for_US} deaths.
+
+\end{document}
